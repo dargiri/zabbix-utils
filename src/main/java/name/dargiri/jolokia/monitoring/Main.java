@@ -14,11 +14,12 @@ public class Main {
         /**
          * Generate template for jolokia monitoring.
          */
-        String dnsUrl = "localhost";
-        String ipAddr = "127.0.0.1";
-        String port = "8080";
-        String metrixPrefix = "REST ";
-        String templateName = "TEMPLATE " + metrixPrefix + "TOMCAT";
+        String ipAddr = "10.0.0.1";
+        String dnsUrl = toPrivateEc2DNS(ipAddr);
+
+        String port = "28080";
+        String metrixPrefix = "Message Processor Internal 01";
+        String templateName = "TEMPLATE " + metrixPrefix + " TOMCAT";
 
         List<String> strings = IOUtils.readLines(Main.class.getClassLoader().getResourceAsStream("template.xml"));
         String joined = StringUtils.join(strings, "\n");
@@ -29,5 +30,9 @@ public class Main {
         joined = StringUtils.replace(joined, "##METRIX_PREFIX##", metrixPrefix);
 
         IOUtils.write(joined, new FileOutputStream("/Users/dionis/Desktop/template_generated.xml"));
+    }
+
+    private static String toPrivateEc2DNS(String ipAddr) {
+        return "ip-"+StringUtils.replace(ipAddr, ".", "-")+".ec2.internal";
     }
 }
