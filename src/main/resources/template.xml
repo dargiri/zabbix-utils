@@ -5,7 +5,7 @@
             <proxy_hostid>0</proxy_hostid>
             <useip>0</useip>
             <dns>##DNS_URL##</dns>
-            <ip>127.0.0.1</ip>
+            <ip>##IP_ADDR##</ip>
             <port>10050</port>
             <status>3</status>
             <useipmi>0</useipmi>

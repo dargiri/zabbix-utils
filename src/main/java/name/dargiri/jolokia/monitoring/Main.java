@@ -15,6 +15,7 @@ public class Main {
          * Generate template for jolokia monitoring.
          */
         String dnsUrl = "localhost";
+        String ipAddr = "127.0.0.1";
         String port = "8080";
         String metrixPrefix = "REST ";
         String templateName = "TEMPLATE " + metrixPrefix + "TOMCAT";
@@ -22,6 +23,7 @@ public class Main {
         List<String> strings = IOUtils.readLines(Main.class.getClassLoader().getResourceAsStream("template.xml"));
         String joined = StringUtils.join(strings, "\n");
         joined = StringUtils.replace(joined, "##DNS_URL##", dnsUrl);
+        joined = StringUtils.replace(joined, "##IP_ADDR##", ipAddr);
         joined = StringUtils.replace(joined, "##PORT##", port);
         joined = StringUtils.replace(joined, "##TEMPLATE_NAME##", templateName);
         joined = StringUtils.replace(joined, "##METRIX_PREFIX##", metrixPrefix);
